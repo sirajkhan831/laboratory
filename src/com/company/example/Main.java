@@ -3,64 +3,72 @@ package com.company.example;
 import java.util.Scanner;
 
 public class Main {
-    private static int[][] array = new int[3][3];
-    private static boolean win = false;
+    private static int count = 0;
 
     public static void main(String[] args) {
-        printBoard();
-        while (true) {
-            checkWin();
-            if (!win) {
-                fillBoard();
-                printBoard();
-            } else {
-                System.out.println("Player has won");
-                break;
+        int store = 0;
+        int store1 = 0;
+        while (store <= 99 && store1 <= 99) {
+            int roll = roll();
+            System.out.println("PLayer1 got : " + roll);
+            store += roll;
+            System.out.println("Player1 is now at : " + store);
+            if (store > 100) {
+                store -= roll;
+                System.out.println("Player 1 can not surpass 100 and is reverted back to : " + store);
             }
-        }
-    }
-
-    public static void fillBoard() {
-        System.out.println("Enter the number to write X : ");
-        Scanner writeScan = new Scanner(System.in);
-        int write = writeScan.nextInt();
-        switch (write) {
-            case 11 -> array[0][0] = 8;
-            case 12 -> array[0][1] = 8;
-            case 13 -> array[0][2] = 8;
-            case 14 -> array[1][0] = 8;
-            case 15 -> array[1][1] = 8;
-            case 16 -> array[1][2] = 8;
-            case 17 -> array[2][0] = 8;
-            case 18 -> array[2][1] = 8;
-            case 19 -> array[2][2] = 8;
-        }
-    }
-
-    public static void printBoard() {
-        int count = 10;
-        int i;
-        for (i = 0; i < 3; i++) {
-            int j;
-            for (j = 0; j < 3; j++) {
-                count++;
-                if (array[i][j] != 8) {
-                    array[i][j] = count;
+            if (store < 89 && store > 11) {
+                switch (luck()) {
+                    case 1 -> {
+                        store += roll;
+                        System.out.println("Player1 got a ladder is now at : " + store);
+                    }
+                    case 2 -> {
+                        store -= 2 * roll;
+                        System.out.println("Player1 got a snake is now at : " + store);
+                    }
                 }
-                System.out.print(array[i][j] + " ");
             }
-            System.out.println("");
+            int roll2 = roll2();
+            System.out.println("Player2 got : " + roll2);
+            store1 += roll2;
+            System.out.println("Player2 is now at : " + store1);
+            if (store1 > 100) {
+                store1 -= roll2;
+                System.out.println("Player 2 can not surpass 100 and is reverted back to : " + store1);
+            }
+            if (store1 < 89 && store1 > 11) {
+                switch (luck()) {
+                    case 1 -> {
+                        store1 += roll2;
+                        System.out.println("Player2 got a ladder is now at : " + store1);
+                    }
+                    case 2 -> {
+                        store1 -= 2 * roll2;
+                        System.out.println("Player2 got a snake is now at : " + store1);
+                    }
+                }
+            }
         }
+        System.out.println("Player 1 finished in : " + store);
+        System.out.println("Player 2 finished in : " + store1);
+        if (store > store1) {
+            System.out.println("Player 1 has won the game. The total number of time the dice was rolled per player is : " + count);
+        } else
+            System.out.println("Player 2 has won the game. The total number of time the dice was rolled per player is : " + count);
     }
 
-    public static void checkWin() {
-        if (array[0][0] == array[0][1] && array[0][0] == array[0][2])
-        {
-            win = true;
-        }
-        else if (array[0][0] == array[1][0] && array[0][0] == array[2][0])
-            win = true;
-        else if (array[0][0] == array[1][1] && array[0][0] == array[2][2])
-            win = true;
+    public static int roll() {
+        count++;
+        return (int) Math.floor(Math.random() * 6) + 1;
     }
+
+    public static int roll2() {
+        return (int) Math.floor(Math.random() * 6) + 1;
+    }
+
+    public static int luck() {
+        return (int) Math.floor(Math.random() * 3);
+    }
+
 }
