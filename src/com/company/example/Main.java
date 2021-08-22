@@ -74,9 +74,9 @@ public class Main {
     public static void printBoard() {
         int count = 0;
         int i;
-        for (i = 0; i < 3; i++) {
+        for (i = 0; i < array.length; i++) {
             int j;
-            for (j = 0; j < 3; j++) {
+            for (j = 0; j < array.length; j++) {
                 count++;
                 if (!Objects.equals(array[i][j], "X") && !Objects.equals(array[i][j], "O")) {
                     array[i][j] = Integer.toString(count);
