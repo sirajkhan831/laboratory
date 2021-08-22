@@ -71,9 +71,9 @@ public class Main {
                 if (!Objects.equals(array[i][j], "X") && !Objects.equals(array[i][j], "O")) {
                     array[i][j] = Integer.toString(count);
                 }
-                System.out.print(array[i][j] + " ");
+                System.out.print("| "+array[i][j] + " | ");
             }
-            System.out.println("");
+            System.out.println("\n-----------------");
         }
     }
 
