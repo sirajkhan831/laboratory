@@ -16,21 +16,21 @@ public class Main {
                 printBoard();
                 checkWin();
                 if (win) {
-                    System.out.println("Player with X has Won.");
+                    System.out.println("Player with 'X' has Won.");
                     break;
                 }
                 fillBoard2();
                 printBoard();
                 checkWin();
                 if (win) {
-                    System.out.println("Player with O has Won");
+                    System.out.println("Player with 'O' has Won");
                     break;
                 }
             } else {
                 break;
             }
         }
-        System.out.println("Match Finished");
+        System.out.println("Match finished");
         checkWin();
         if (!win) {
             System.out.println("Match finished with no winners");
