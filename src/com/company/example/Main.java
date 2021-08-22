@@ -1,9 +1,10 @@
 package com.company.example;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-    private static int[][] array = new int[3][3];
+    private static String[][] array = new String[3][3];
     private static boolean win = false;
 
     public static void main(String[] args) {
@@ -11,41 +12,64 @@ public class Main {
         while (true) {
             checkWin();
             if (!win) {
-                fillBoard();
+                fillBoard1();
+                printBoard();
+                checkWin();
+                if (win) {
+                    break;
+                }
+                fillBoard2();
                 printBoard();
             } else {
-                System.out.println("Player has won");
                 break;
             }
         }
+        System.out.println("Player has won");
     }
 
-    public static void fillBoard() {
+    public static void fillBoard1() {
         System.out.println("Enter the number to write X : ");
         Scanner writeScan = new Scanner(System.in);
         int write = writeScan.nextInt();
         switch (write) {
-            case 11 -> array[0][0] = 8;
-            case 12 -> array[0][1] = 8;
-            case 13 -> array[0][2] = 8;
-            case 14 -> array[1][0] = 8;
-            case 15 -> array[1][1] = 8;
-            case 16 -> array[1][2] = 8;
-            case 17 -> array[2][0] = 8;
-            case 18 -> array[2][1] = 8;
-            case 19 -> array[2][2] = 8;
+            case 1 -> array[0][0] = "X";
+            case 2 -> array[0][1] = "X";
+            case 3 -> array[0][2] = "X";
+            case 4 -> array[1][0] = "X";
+            case 5 -> array[1][1] = "X";
+            case 6 -> array[1][2] = "X";
+            case 7 -> array[2][0] = "X";
+            case 8 -> array[2][1] = "X";
+            case 9 -> array[2][2] = "X";
+        }
+    }
+
+    public static void fillBoard2() {
+        System.out.println("Enter the number to write O : ");
+        Scanner writeScan = new Scanner(System.in);
+        int write = writeScan.nextInt();
+        switch (write) {
+            case 1 -> array[0][0] = "O";
+            case 2 -> array[0][1] = "O";
+            case 3 -> array[0][2] = "O";
+            case 4 -> array[1][0] = "O";
+            case 5 -> array[1][1] = "O";
+            case 6 -> array[1][2] = "O";
+            case 7 -> array[2][0] = "O";
+            case 8 -> array[2][1] = "O";
+            case 9 -> array[2][2] = "O";
         }
     }
 
     public static void printBoard() {
-        int count = 10;
+        int count = 0;
         int i;
         for (i = 0; i < 3; i++) {
             int j;
             for (j = 0; j < 3; j++) {
                 count++;
-                if (array[i][j] != 8) {
-                    array[i][j] = count;
+                if (!Objects.equals(array[i][j], "X") && !Objects.equals(array[i][j], "O")) {
+                    array[i][j] = Integer.toString(count);
                 }
                 System.out.print(array[i][j] + " ");
             }
@@ -54,13 +78,11 @@ public class Main {
     }
 
     public static void checkWin() {
-        if (array[0][0] == array[0][1] && array[0][0] == array[0][2])
-        {
+        if (Objects.equals(array[0][0], array[0][1]) && Objects.equals(array[0][0], array[0][2])) {
             win = true;
-        }
-        else if (array[0][0] == array[1][0] && array[0][0] == array[2][0])
+        } else if (Objects.equals(array[0][0], array[1][0]) && Objects.equals(array[0][0], array[2][0]))
             win = true;
-        else if (array[0][0] == array[1][1] && array[0][0] == array[2][2])
+        else if (Objects.equals(array[0][0], array[1][1]) && Objects.equals(array[0][0], array[2][2]))
             win = true;
     }
 }
