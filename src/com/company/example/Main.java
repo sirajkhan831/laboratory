@@ -16,15 +16,21 @@ public class Main {
                 printBoard();
                 checkWin();
                 if (win) {
+                    System.out.println("Player with X has Won.");
                     break;
                 }
                 fillBoard2();
                 printBoard();
+                checkWin();
+                if (win) {
+                    System.out.println("Player with O has Won");
+                    break;
+                }
             } else {
                 break;
             }
         }
-        System.out.println("Player has won");
+        System.out.println("Match Finished");
     }
 
     public static void fillBoard1() {
@@ -71,7 +77,7 @@ public class Main {
                 if (!Objects.equals(array[i][j], "X") && !Objects.equals(array[i][j], "O")) {
                     array[i][j] = Integer.toString(count);
                 }
-                System.out.print("| "+array[i][j] + " | ");
+                System.out.print("| " + array[i][j] + " | ");
             }
             System.out.println("\n-----------------");
         }
@@ -83,6 +89,16 @@ public class Main {
         } else if (Objects.equals(array[0][0], array[1][0]) && Objects.equals(array[0][0], array[2][0]))
             win = true;
         else if (Objects.equals(array[0][0], array[1][1]) && Objects.equals(array[0][0], array[2][2]))
+            win = true;
+        else if (Objects.equals(array[1][0], array[1][1]) && Objects.equals(array[1][0], array[1][2]))
+            win = true;
+        else if (Objects.equals(array[2][0], array[2][1]) && Objects.equals(array[2][0], array[2][2]))
+            win = true;
+        else if (Objects.equals(array[0][1], array[1][1]) && Objects.equals(array[0][1], array[2][1]))
+            win = true;
+        else if (Objects.equals(array[0][2], array[1][2]) && Objects.equals(array[0][2], array[2][2]))
+            win = true;
+        else if (Objects.equals(array[0][2], array[1][1]) && Objects.equals(array[0][2], array[2][0]))
             win = true;
     }
 }
