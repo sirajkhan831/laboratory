@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-    private static String[][] array = new String[3][3];
+    private static final String[][] array = new String[3][3];
     private static boolean win = false;
 
     public static void main(String[] args) {
@@ -31,6 +31,10 @@ public class Main {
             }
         }
         System.out.println("Match Finished");
+        checkWin();
+        if (!win) {
+            System.out.println("Match finished with no winners");
+        }
     }
 
     public static void fillBoard1() {
