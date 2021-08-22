@@ -8,33 +8,7 @@ public class Main {
     private static boolean win = false;
 
     public static void main(String[] args) {
-        printBoard();
-        while (true) {
-            checkWin();
-            if (!win) {
-                fillBoard1();
-                printBoard();
-                checkWin();
-                if (win) {
-                    System.out.println("Player with 'X' has Won.");
-                    break;
-                }
-                fillBoard2();
-                printBoard();
-                checkWin();
-                if (win) {
-                    System.out.println("Player with 'O' has Won");
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-        System.out.println("Match finished");
-        checkWin();
-        if (!win) {
-            System.out.println("Match finished with no winners");
-        }
+        start();
     }
 
     public static void fillBoard1() {
@@ -104,5 +78,35 @@ public class Main {
             win = true;
         else if (Objects.equals(array[0][2], array[1][1]) && Objects.equals(array[0][2], array[2][0]))
             win = true;
+    }
+
+    public static void start() {
+        printBoard();
+        while (true) {
+            checkWin();
+            if (!win) {
+                fillBoard1();
+                printBoard();
+                checkWin();
+                if (win) {
+                    System.out.println("Player with 'X' has Won.");
+                    break;
+                }
+                fillBoard2();
+                printBoard();
+                checkWin();
+                if (win) {
+                    System.out.println("Player with 'O' has Won");
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+        System.out.println("Match finished");
+        checkWin();
+        if (!win) {
+            System.out.println("Match finished with no winners");
+        }
     }
 }
