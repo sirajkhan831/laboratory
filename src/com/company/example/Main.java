@@ -6,12 +6,14 @@ import java.util.Scanner;
 public class Main {
     private static final String[][] array = new String[3][3];
     private static boolean win = false;
+    private static int attempt = 0;
 
     public static void main(String[] args) {
         start();
     }
 
     public static void fillBoard1() {
+        attempt++;
         System.out.println("Enter the number to write X : ");
         Scanner writeScan = new Scanner(System.in);
         int write = writeScan.nextInt();
@@ -29,6 +31,7 @@ public class Main {
     }
 
     public static void fillBoard2() {
+        attempt++;
         System.out.println("Enter the number to write O : ");
         Scanner writeScan = new Scanner(System.in);
         int write = writeScan.nextInt();
@@ -84,22 +87,22 @@ public class Main {
         printBoard();
         while (true) {
             checkWin();
-            if (!win) {
-                fillBoard1();
-                printBoard();
-                checkWin();
-                if (win) {
-                    System.out.println("Player with 'X' has Won.");
-                    break;
-                }
-                fillBoard2();
-                printBoard();
-                checkWin();
-                if (win) {
-                    System.out.println("Player with 'O' has Won");
-                    break;
-                }
-            } else {
+            fillBoard1();
+            printBoard();
+            checkWin();
+            if (win) {
+                System.out.println("Player with 'X' has Won.");
+                break;
+            }
+            fillBoard2();
+            printBoard();
+            checkWin();
+            if (win) {
+                System.out.println("Player with 'O' has Won");
+                break;
+            }
+            if (attempt > 7) {
+                System.out.println("No more possible plays remaining.");
                 break;
             }
         }
@@ -110,3 +113,4 @@ public class Main {
         }
     }
 }
+// Created by Siraj Khan
