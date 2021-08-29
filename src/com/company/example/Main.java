@@ -14,7 +14,7 @@ public class Main {
 
     public static void fillBoard1() {
         attempt++;
-        System.out.println("Enter the number to write X : ");
+        System.out.print("\nEnter the number to write X : ");
         Scanner writeScan = new Scanner(System.in);
         int write = writeScan.nextInt();
         switch (write) {
@@ -32,7 +32,7 @@ public class Main {
 
     public static void fillBoard2() {
         attempt++;
-        System.out.println("Enter the number to write O : ");
+        System.out.print("\nEnter the number to write O : ");
         Scanner writeScan = new Scanner(System.in);
         int write = writeScan.nextInt();
         switch (write) {
@@ -50,17 +50,21 @@ public class Main {
 
     public static void printBoard() {
         int count = 0;
-        int i;
+        int i, j;
         for (i = 0; i < array.length; i++) {
-            int j;
             for (j = 0; j < array.length; j++) {
                 count++;
                 if (!Objects.equals(array[i][j], "X") && !Objects.equals(array[i][j], "O")) {
                     array[i][j] = Integer.toString(count);
                 }
-                System.out.print("| " + array[i][j] + " | ");
+                System.out.print(" " + array[i][j] + " ");
+                if (j < array.length - 1) {
+                    System.out.print(" | ");
+                }
             }
-            System.out.println("\n-----------------");
+            if (i < array.length - 1) {
+                System.out.println("\n----|-----|----");
+            }
         }
     }
 
@@ -91,25 +95,25 @@ public class Main {
             printBoard();
             checkWin();
             if (win) {
-                System.out.println("Player with 'X' has Won.");
+                System.out.println("\n\nPlayer with 'X' has Won.");
                 break;
             }
             fillBoard2();
             printBoard();
             checkWin();
             if (win) {
-                System.out.println("Player with 'O' has Won");
+                System.out.println("\n\nPlayer with 'O' has Won");
                 break;
             }
             if (attempt > 7) {
-                System.out.println("No more possible plays remaining.");
+                System.out.println("\nNo more possible plays remaining.");
                 break;
             }
         }
-        System.out.println("Match finished");
+        System.out.println("\nMatch finished");
         checkWin();
         if (!win) {
-            System.out.println("Match finished with no winners");
+            System.out.println("\nMatch finished with no winners");
         }
     }
 }
